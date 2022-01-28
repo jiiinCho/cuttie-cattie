@@ -1,6 +1,6 @@
 import styles from "./content.module.css";
 import Image from "../image/image";
-import { Service } from "../../../interface";
+import { Service } from "../../interface";
 
 export default function Content(service: Service, page: number) {
   const ul = document.createElement("ul");

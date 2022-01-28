@@ -1,0 +1,7 @@
+.btnContainer {
+  display: flex;
+  max-width: 1024px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1em;
+}

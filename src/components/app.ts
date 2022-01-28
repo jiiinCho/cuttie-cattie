@@ -2,7 +2,8 @@ import styles from "./app.module.css";
 import Content from "./content/content";
 import Title from "./title/title";
 import { Service } from "../interface";
-import Button from "./button/button";
+import ButtonContainer from "./button-container/button-container";
+import Page from "./page/page";
 
 export default class App {
   private readonly root: HTMLElement;
@@ -17,8 +18,12 @@ export default class App {
     this.root = root;
     this.service = service;
     this.page = 0;
-    this.btns = this.buttons();
-    this.pageElement = this.displayPage();
+    this.btns = ButtonContainer(
+      this.page,
+      this.handleOnPrevClick,
+      this.handleOnNextClick
+    );
+    this.pageElement = Page(this.page);
     this.content = Content(this.service, this.page);
     this.loading = this.displayLoadingState();
   }
@@ -46,32 +51,20 @@ export default class App {
   };
 
   render = () => {
-    const newBtns = this.buttons();
-    const newPage = this.displayPage();
+    const newBtns = ButtonContainer(
+      this.page,
+      this.handleOnPrevClick,
+      this.handleOnNextClick
+    );
+    const newPage = Page(this.page);
     const newContent = Content(this.service, this.page);
+
     this.root.appendChild(newBtns);
     this.root.appendChild(newPage);
     this.root.appendChild(newContent);
     this.btns = newBtns;
     this.pageElement = newPage;
     this.content = newContent;
-  };
-
-  buttons = () => {
-    const container = document.createElement("div");
-    container.classList.add(`${styles.btnContainer}`);
-    const prevBtn = Button("Previous", this.handleOnPrevClick, this.page === 0);
-    const nextBtn = Button("Next", this.handleOnNextClick, this.page === 11);
-    container.appendChild(prevBtn);
-    container.appendChild(nextBtn);
-    return container;
-  };
-
-  displayPage = () => {
-    const h5 = document.createElement("h5");
-    h5.innerText = `Showing page ${this.page.toString()}`;
-    h5.classList.add(`${styles.page}`);
-    return h5;
   };
 
   displayLoadingState = () => {
