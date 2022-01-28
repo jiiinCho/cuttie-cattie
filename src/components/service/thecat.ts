@@ -6,7 +6,7 @@ export default class Cat implements Service {
   constructor(key: string) {
     this.key = key;
   }
-  getImages = async (page: number, appendImages: AppendImages) => {
+  getImages = async (page: number) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("x-api-key", this.key);
@@ -20,8 +20,7 @@ export default class Cat implements Service {
         `https://api.thecatapi.com/v1/images/search?limit=12&order=asc&page=${page}`,
         requestOptions
       );
-      const result = await response.json();
-      appendImages(result);
+      return await response.json();
     } catch (e) {
       throw new Error(`unable to fetch data ${e}`);
     }

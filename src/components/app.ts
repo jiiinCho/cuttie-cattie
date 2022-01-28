@@ -1,9 +1,9 @@
 import styles from "./app.module.css";
-import Content from "./content/content";
 import Title from "./title/title";
 import { Service } from "../interface";
 import ButtonContainer from "./button-container/button-container";
 import Page from "./page/page";
+import Image from "./image/image";
 
 export default class App {
   private readonly root: HTMLElement;
@@ -12,7 +12,7 @@ export default class App {
   private btns: HTMLElement;
   private loading: HTMLElement;
   private pageElement: HTMLHeadingElement;
-  private content: HTMLUListElement;
+  private ulElement: HTMLUListElement;
 
   constructor(root: HTMLElement, service: Service) {
     this.root = root;
@@ -24,30 +24,44 @@ export default class App {
       this.handleOnNextClick
     );
     this.pageElement = Page(this.page);
-    this.content = Content(this.service, this.page);
-    this.loading = this.displayLoadingState();
+    this.ulElement = document.createElement("ul");
+    this.ulElement.classList.add(`${styles.ul}`);
+    this.loading = this.Loading();
   }
+
+  fetchContent = () => {
+    this.root.appendChild(this.loading);
+    this.ulElement.innerHTML = "";
+    this.service //
+      .getImages(this.page)
+      .then((images) => {
+        images.map((item) => {
+          const image = Image(item.url);
+          this.ulElement.appendChild(image);
+        });
+      })
+      .then(() => {
+        this.root.removeChild(this.loading);
+        this.root.appendChild(this.ulElement);
+      });
+  };
 
   handleOnPrevClick = () => {
     this.page -= 1;
     this.removeElements();
-    this.root.appendChild(this.loading);
     this.render();
-    this.root.removeChild(this.loading);
   };
 
   handleOnNextClick = () => {
     this.page += 1;
     this.removeElements();
-    this.root.appendChild(this.loading);
     this.render();
-    this.root.removeChild(this.loading);
   };
 
   removeElements = () => {
     this.root.removeChild(this.btns);
     this.root.removeChild(this.pageElement);
-    this.root.removeChild(this.content);
+    this.root.removeChild(this.ulElement);
   };
 
   render = () => {
@@ -57,17 +71,14 @@ export default class App {
       this.handleOnNextClick
     );
     const newPage = Page(this.page);
-    const newContent = Content(this.service, this.page);
-
     this.root.appendChild(newBtns);
     this.root.appendChild(newPage);
-    this.root.appendChild(newContent);
+    this.fetchContent();
     this.btns = newBtns;
     this.pageElement = newPage;
-    this.content = newContent;
   };
 
-  displayLoadingState = () => {
+  Loading = () => {
     const div = document.createElement("div");
     div.classList.add(`${styles.loading}`);
     const h3 = document.createElement("h3");
@@ -77,13 +88,10 @@ export default class App {
   };
 
   run() {
-    // const content = Content(this.service, this.page);
     const title = Title("My Cuttie Cattie");
-    // const btns = this.buttons();
-    // const page = this.displayPage();
     this.root.appendChild(title);
     this.root.appendChild(this.btns);
     this.root.appendChild(this.pageElement);
-    this.root.appendChild(this.content);
+    this.fetchContent();
   }
 }
