@@ -1,0 +1,15 @@
+.title {
+  font-family: "Pacifico", cursive;
+  color: #ff6464;
+  font-size: 3.5rem;
+  text-align: center;
+  cursor: default;
+  margin: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 2rem;
+  }
+}
