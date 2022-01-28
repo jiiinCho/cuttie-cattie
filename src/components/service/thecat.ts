@@ -1,4 +1,4 @@
-import { AppendImages, Service } from "../../interface";
+import { Service } from "../../interface";
 
 export default class Cat implements Service {
   private readonly key: string;

@@ -9,7 +9,7 @@ export default function ButtonContainer(
   const container = document.createElement("div");
   container.classList.add(`${styles.btnContainer}`);
   const prevBtn = Button("Previous", onPrevClick, page === 0);
-  const nextBtn = Button("Next", onNextClick, page === 11);
+  const nextBtn = Button("Next", onNextClick, page === 12);
   container.appendChild(prevBtn);
   container.appendChild(nextBtn);
   return container;

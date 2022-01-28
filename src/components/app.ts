@@ -29,7 +29,7 @@ export default class App {
     this.loading = this.Loading();
   }
 
-  fetchContent = () => {
+  fetchContent = (pageElement: HTMLHeadingElement, buttons: HTMLElement) => {
     this.root.appendChild(this.loading);
     this.ulElement.innerHTML = "";
     this.service //
@@ -42,6 +42,8 @@ export default class App {
       })
       .then(() => {
         this.root.removeChild(this.loading);
+        this.root.appendChild(buttons);
+        this.root.appendChild(pageElement);
         this.root.appendChild(this.ulElement);
       });
   };
@@ -71,9 +73,7 @@ export default class App {
       this.handleOnNextClick
     );
     const newPage = Page(this.page);
-    this.root.appendChild(newBtns);
-    this.root.appendChild(newPage);
-    this.fetchContent();
+    this.fetchContent(newPage, newBtns);
     this.btns = newBtns;
     this.pageElement = newPage;
   };
@@ -92,6 +92,6 @@ export default class App {
     this.root.appendChild(title);
     this.root.appendChild(this.btns);
     this.root.appendChild(this.pageElement);
-    this.fetchContent();
+    this.fetchContent(this.pageElement, this.btns);
   }
 }
