@@ -1,4 +1,4 @@
-import { AppendImages, Service } from "../../interface";
+import { Service } from "../../interface";
 
 export default class Cat implements Service {
   private readonly key: string;
@@ -22,7 +22,9 @@ export default class Cat implements Service {
       );
       return await response.json();
     } catch (e) {
-      throw new Error(`unable to fetch data ${e}`);
+      console.log("<------- Error Message -------->");
+      console.log("unable to fetch data from thecatapi");
+      console.log(e);
     }
   };
 }

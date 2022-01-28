@@ -1,5 +1,6 @@
 .page {
-  margin: 0.25rem;
   font-family: sans-serif;
-  margin-left: 1em;
+  max-width: 1024px;
+  margin: 0.5rem auto;
+  padding-left: 1em;
 }
