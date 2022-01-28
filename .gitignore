@@ -1,0 +1,6 @@
+#npm settings
+node_modules
+build
+
+#API Key
+.env

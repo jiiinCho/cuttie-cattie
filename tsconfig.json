@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "es2020",
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    // "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "removeComments": true,
+    "noEmitOnError": true,
+
+    "strict": true,
+    "noUnusedLocals": true /* Enable error reporting when a local variables aren't read. */,
+    "noUnusedParameters": true /* Raise an error when a function parameter isn't read */,
+    "noImplicitReturns": true /* Enable error reporting for codepaths that do not explicitly return in a function. */,
+    "noFallthroughCasesInSwitch": true /* Enable error reporting for fallthrough cases in switch statements. */,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true
+  }
+}

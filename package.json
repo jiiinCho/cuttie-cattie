@@ -1,0 +1,36 @@
+{
+  "name": "cuttie-cattie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiiinCho/cuttie-cattie.git"
+  },
+  "author": "Jiiin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiiinCho/cuttie-cattie/issues"
+  },
+  "homepage": "https://github.com/jiiinCho/cuttie-cattie#readme",
+  "devDependencies": {
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@snowpack/plugin-babel": "^2.1.7",
+    "@snowpack/plugin-dotenv": "^2.2.0",
+    "@snowpack/plugin-postcss": "^1.4.3",
+    "@types/node": "^17.0.13",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "postcss": "^8.4.5",
+    "snowpack": "^3.8.8",
+    "typescript": "^4.5.5",
+    "typescript-plugin-css-modules": "^3.4.0"
+  }
+}
